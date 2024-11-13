@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stylishecommerce/core/utils/routes/routes_pages.dart';
 import 'package:stylishecommerce/feature/home/logic/home_cubit.dart';
+import 'package:stylishecommerce/feature/home/product/logic/products_cubit.dart';
+import 'package:stylishecommerce/feature/home/product/ui/productsByCategory.dart';
 import 'package:stylishecommerce/feature/login/ui/login_screen.dart';
-import 'package:stylishecommerce/feature/product/logic/products_cubit.dart';
-import 'package:stylishecommerce/feature/product/ui/productsByCategory.dart';
 import 'package:stylishecommerce/feature/profile/logic/profile_cubit.dart';
 
 import '../../../feature/home/ui/home_page.dart';
@@ -38,18 +38,17 @@ class AppRouter {
       case RoutesPages.profile:
         return MaterialPageRoute(builder: (_) =>
             BlocProvider(
-              create: (_) => getIt<ProfileCubit>(),
+              create: (_) => getIt<ProfileCubit>()..getUser(),
               child: Profile(),
             ));
 
       case RoutesPages.productsByCategory:
         return MaterialPageRoute(
             builder: (_) =>
-            BlocProvider(
-              create: (_) => getIt<ProductsCubit>(),
+            BlocProvider.value(
+              value: getIt<ProductsCubit>(),
               child:  ProductsByCategory(categoryName: settings.arguments as String,),
             ));
-
 
       default:
         return null;

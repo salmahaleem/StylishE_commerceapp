@@ -6,5 +6,4 @@ class RoutesPages{
   static const String home = 'HomePage';
   static const String profile = 'Profile';
   static const String productsByCategory = 'ProductsByCategory';
-
 }

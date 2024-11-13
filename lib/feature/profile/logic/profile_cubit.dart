@@ -102,12 +102,12 @@ class ProfileCubit extends Cubit<ProfileState> {
     return newValue.isNotEmpty && newValue != currentValue ? newValue : null;
   }
 
-  @override
-  Future<void> close() {
-    usernameController.dispose();
-    emailController.dispose();
-    passwordController.dispose();
-    return super.close();
-  }
+  // @override
+  // Future<void> close() {
+  //   usernameController.dispose();
+  //   emailController.dispose();
+  //   passwordController.dispose();
+  //   return super.close();
+  // }
 
 }

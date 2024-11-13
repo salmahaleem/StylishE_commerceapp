@@ -3,11 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:stylishecommerce/core/network_service/homeService.dart';
-import 'package:stylishecommerce/core/network_service/productService.dart';
 import 'package:stylishecommerce/core/utils/navigation.dart';
 import 'package:stylishecommerce/core/utils/routes/routes_pages.dart';
-import 'package:stylishecommerce/feature/product/logic/products_cubit.dart';
+import 'package:stylishecommerce/feature/home/product/logic/products_cubit.dart';
 
 class CategoryCard extends StatelessWidget{
     final String category;
@@ -21,7 +19,8 @@ class CategoryCard extends StatelessWidget{
     Widget build(BuildContext context) {
       return GestureDetector(
         onTap: (){
-          context.read<ProductsCubit>().getProductsByCategory(category);
+          final productCubit = context.read<ProductsCubit>();
+          productCubit.getProductsByCategory(category);
           context.pushNamed(RoutesPages.productsByCategory,arguments: category);
         },
         child: Container(

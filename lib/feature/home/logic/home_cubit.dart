@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:stylishecommerce/core/network_service/homeService.dart';
-import 'package:stylishecommerce/feature/product/model/productsModel.dart';
+import 'package:stylishecommerce/feature/home/product/model/productsModel.dart';
 
 part 'home_state.dart';
 
@@ -10,8 +10,8 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this.homeService) : super(HomeInitial()){
     getAllData();
   }
-  late final categories;
-  late final products ;
+   List<String> categories = [];
+   List<ProductsModel> products =[] ;
   
   Future getAllData() async{
     

@@ -3,11 +3,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:stylishecommerce/core/network_service/productService.dart';
+import 'package:stylishecommerce/core/network_service/homeService.dart';
 import 'package:stylishecommerce/core/shared/stylishSharedPreferences.dart';
 import 'package:stylishecommerce/core/utils/routes/appRouter.dart';
 import 'package:stylishecommerce/core/utils/routes/routes_pages.dart';
-import 'package:stylishecommerce/feature/product/logic/products_cubit.dart';
+import 'package:stylishecommerce/feature/home/product/logic/products_cubit.dart';
 
 import 'app_logic/languages/language_cubit.dart';
 import 'app_logic/theme/theme_cubit.dart';
@@ -29,7 +29,7 @@ void main() async {
               providers: [
                 BlocProvider(create: (_) => ThemeCubit()),
                 BlocProvider(create: (_) => LanguageCubit()),
-                BlocProvider(create: (_)=>ProductsCubit(ProductService(Dio()))),
+                BlocProvider(create: (_)=>ProductsCubit(HomeService(Dio()))),
               ],
               child: const MyApp())));
 }

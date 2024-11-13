@@ -2,9 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:stylishecommerce/core/utils/colors.dart';
 import 'package:stylishecommerce/feature/home/logic/home_cubit.dart';
-import 'package:stylishecommerce/feature/product/ui/ProductsCardInCategory.dart';
+import 'package:stylishecommerce/feature/home/product/ui/ProductsCardInCategory.dart';
 
 class LimitProductsHomeList extends StatelessWidget{
   const LimitProductsHomeList({super.key});
@@ -48,7 +47,7 @@ class LimitProductsHomeList extends StatelessWidget{
             itemCount: productsToShow.length,
             itemBuilder: (context, index) {
               final product = productsToShow[index];
-              return ProductsCardInCategory(productsModel: product,);
+              return ProductsCardInCategory(productsModel: product);
             },
           );
         }
