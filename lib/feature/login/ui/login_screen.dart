@@ -28,20 +28,20 @@ class LoginScreen extends StatelessWidget{
              mainAxisAlignment: MainAxisAlignment.center,
              crossAxisAlignment: CrossAxisAlignment.stretch,
              children: [
-               Align(
-                 alignment: Alignment.topRight,
-                 child: IconButton(
-                   icon: const Icon(Icons.language),
-                   onPressed: () {
-                     final newLanguageCode =
-                     context.locale.languageCode == 'en' ? 'ar' : 'en';
-                     context
-                         .read<LanguageCubit>()
-                         .changeLanguage(newLanguageCode);
-                     context.setLocale(Locale(newLanguageCode));
-                   },
-                 ),
-               ),
+               // Align(
+               //   alignment: Alignment.topRight,
+               //   child: IconButton(
+               //     icon: const Icon(Icons.language),
+               //     onPressed: () {
+               //       final newLanguageCode =
+               //       context.locale.languageCode == 'en' ? 'ar' : 'en';
+               //       context
+               //           .read<LanguageCubit>()
+               //           .changeLanguage(newLanguageCode);
+               //       context.setLocale(Locale(newLanguageCode));
+               //     },
+               //   ),
+               // ),
                verticalSpace(30),
                Text(
                  LocaleKeys.Authentication_title_Login.tr(),

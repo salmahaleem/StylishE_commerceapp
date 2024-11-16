@@ -89,9 +89,10 @@ class ImagePersonal extends StatelessWidget{
 
   ImageProvider buildImageProvider() {
     if (image != null) {
-      return image!.startsWith('http')
-          ? NetworkImage(image!)
-          : FileImage(File(image!));
+      return const AssetImage(Assets.imagesProfileimage);
+      // return image!.startsWith('http')
+      //     ? NetworkImage(image!)
+      //     : FileImage(File(image!));
     } else {
       return const AssetImage(Assets.imagesProfileimage);
     }

@@ -8,18 +8,16 @@ import 'package:stylishecommerce/core/network_service/gititdio.dart';
 import 'package:stylishecommerce/core/utils/navigation.dart';
 import 'package:stylishecommerce/core/utils/routes/routes_pages.dart';
 import 'package:stylishecommerce/core/utils/spacing.dart';
-
-
 import '../../../../../generated/locale_keys.dart';
-import '../../../product/logic/products_cubit.dart';
+import '../../../logic/categoryProducts/category_products_cubit.dart';
 
 class Fillterbar extends StatelessWidget{
 
   Fillterbar({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ProductsCubit>(
-      create: (_) => getIt<ProductsCubit>(),
+    return BlocProvider<CategoryProductsCubit>(
+      create: (_) => getIt<CategoryProductsCubit>(),
       child: Container(
       width: 340.w,
       child: Row(
@@ -61,8 +59,8 @@ class Fillterbar extends StatelessWidget{
             return ListTile(
               title: Text("ALL"),
               onTap: (){
-                final productCubit = context.read<ProductsCubit>();
-                 productCubit.getAllProducts();
+                final productCubit = context.read<CategoryProductsCubit>();
+                 //productCubit.();
                  context.pushNamed(RoutesPages.productsByCategory);
               },
             );

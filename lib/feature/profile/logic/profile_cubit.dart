@@ -13,7 +13,8 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   ProfileModel? profile;
 
-  String? image;
+
+  Address? selectedAddress;
 
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -34,7 +35,6 @@ class ProfileCubit extends Cubit<ProfileState> {
       emit(ProfileLoading());
 
       profile = await profileService.getUser();
-
       if(profile != null){
         textFieldInput();
         emit(ProfileLoaded(profile!));
@@ -49,32 +49,23 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   //function to update the profile
-  Future updateUser({String? username}) async{
+  Future updateUser({String? imageUrl}) async{
    try{
-     if(profile == null){
-       emit(ProfileFailure("User not found"));
-       return;
-     }
-
-     if(changeValue!(username)) {
-       emit(ProfileFailure(' Profile not updated'));
-       return;
-     }
-
-     emit(ProfileUpdating());
-
-     profile = profile!.copyWith(
-       username: updateValue(profile!.username, usernameController.text),
-       password: updateValue(profile!.password, passwordController.text),
-       email: updateValue(profile!.email, emailController.text),
-       image: image ?? profile!.image
+     final updatedUser = await profileService.updateUser(
+       userId: profile!.id!,
+       username: updateValue(profile!.username,usernameController.text),
+       email: updateValue(profile!.email,emailController.text ),
+       password: updateValue(profile!.password,passwordController.text),
+       imageUrl: imageUrl ?? profile!.image,
+       //address: selectedAddress?.toUpdateJson(),
      );
 
-     final newProfile = await profileService.updateUser(profile!);
-     if(newProfile != null){
-       profile = newProfile;
+     if (updatedUser != null) {
+       profile = updatedUser;
        textFieldInput();
        emit(ProfileLoaded(profile!));
+     } else {
+       emit(ProfileFailure("Failed to update profile."));
      }
    }catch(error){
      emit(ProfileFailure('$error'));
@@ -90,11 +81,11 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   //function if profile has any change
-  bool changeValue(String? username){
+  bool changeValue(String? newImageUrl){
     return usernameController.text != (profile?.username ?? '') ||
            passwordController.text != (profile?.password ?? '')||
            emailController.text != (profile?.email ?? '') ||
-           image != profile?.image;
+           newImageUrl != profile?.image;
   }
 
   //function to update value in the profile

@@ -29,19 +29,32 @@ Future<ProfileModel?> getUser()async{
 
 }
 
-Future<ProfileModel?> updateUser(ProfileModel profileModel)async{
+Future<ProfileModel?> updateUser({
+    required int userId,
+    String? username,
+    String? email,
+    String? password,
+    String? imageUrl,
+    Map<String, dynamic>? address,})async{
 
  try{
+   final data = {
+     if (username != null) 'username': username,
+     if (email != null) 'email': email,
+     if (password != null) 'password': password,
+     if (imageUrl != null) 'image': imageUrl,
+     if (address != null) 'address': address, // Include address if provided
+   };
    final response = await dio.put(
-       '${ApiConstant.profile}',
-       data: profileModel.toJson(),
+       '${ApiConstant.profile}/$userId',
+       data: data,
        options: Options(headers:{'Content-Type' : 'application/json'})
    );
    if(response.statusCode == 200 ){
      return ProfileModel.fromJson(response.data);
    }
    else{
-     throw Exception('failed to update user ${response.statusCode}/${profileModel.id}');
+     throw Exception('failed to update user ${response.statusCode}/$userId');
    }
 
  }catch(error){

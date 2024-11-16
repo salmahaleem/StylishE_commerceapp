@@ -5,17 +5,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stylishecommerce/core/utils/spacing.dart';
 import 'package:stylishecommerce/core/widget/stylishFormTextField.dart';
 import 'package:stylishecommerce/feature/profile/logic/profile_cubit.dart';
+import 'package:stylishecommerce/feature/profile/model/model.dart';
+import 'package:stylishecommerce/feature/profile/ui/widget/image_personal.dart';
 import 'package:stylishecommerce/generated/locale_keys.dart';
 
 import '../../../../core/widget/stylishFormTextField.dart';
 
 class ProfileDetails extends StatelessWidget{
+  final ProfileModel profileModel;
+
+  const ProfileDetails({super.key,required this.profileModel});
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<ProfileCubit>();
     return SingleChildScrollView(
       child: Column(
           children: [
+            ImagePersonal(
+              image: profileModel.image,
+              onImagePicked: (path) => cubit.updateUser(),),
             //personal
             Text(LocaleKeys.profile_personal_details.tr(),style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold),),
             verticalSpace(20),

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:stylishecommerce/feature/home/logic/home_cubit.dart';
+import 'package:stylishecommerce/feature/home/logic/home/home_cubit.dart';
 import 'package:stylishecommerce/feature/home/ui/widget/category_list/categorycard.dart';
 import 'package:stylishecommerce/feature/home/ui/widget/category_list/shimmerList.dart';
 

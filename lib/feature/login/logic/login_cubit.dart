@@ -37,7 +37,8 @@ class LoginCubit extends Cubit<LoginState> {
 
       final LoginResponseModel? responseModel = await authService.login(loginBody);
       if (responseModel != null) {
-        await StylishSharedPreferences.setToken(responseModel.token);
+        await StylishSharedPreferences.setToken(responseModel.accessToken);
+        await StylishSharedPreferences.setId(responseModel.id);
         emit(LoginLoaded(responseModel));
       } else {
         emit(LoginFailure("Login failed: Invalid response or empty token"));

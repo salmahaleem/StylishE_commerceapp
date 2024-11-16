@@ -17,13 +17,12 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<ProfileCubit>();
     return Scaffold(
       body: BlocConsumer<ProfileCubit, ProfileState>(
         listener: (context, state) {
           if (state is ProfileLoaded) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text("Login Successful!") , backgroundColor: Color(0xFFA5D6A7),),
+              SnackBar(content: Text("Saved Update!") , backgroundColor: Color(0xFFA5D6A7),),
             );
           } else if (state is ProfileFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -35,30 +34,29 @@ class Profile extends StatelessWidget {
           if (state is ProfileLoading) {
             return CircularProgressIndicator();
           }
-          if (state is ProfileLoaded) {
+          else if (state is ProfileLoaded) {
+            final profileCubit = context.read<ProfileCubit>();
             return SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
                   children: [
-                    ImagePersonal(
-                      image: profileModel?.image,
-                      onImagePicked: (path) => cubit.updateUser(),),
-                    verticalSpace(10),
-                    ProfileDetails(),
+                    ProfileDetails(profileModel: state.profileModel),
                     verticalSpace(10),
                     StylishButton(
                         text: LocaleKeys.profile_Save.tr(),
                         onPressed: () {
-                          cubit.updateUser();
+                          profileCubit.updateUser();
                         }),
                   ],
                 ),
               ),
             );
 
-          }
-          return SizedBox.shrink();
+          }else if(state is ProfileFailure){
+            return Text(state.errorMessage);
+          }else{
+          return Center(child: SizedBox.shrink());}
         },
       ),
     );

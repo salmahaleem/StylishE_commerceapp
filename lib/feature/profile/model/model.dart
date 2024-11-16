@@ -66,7 +66,7 @@ class ProfileModel{
   //how to use ?
   // final updatedUser = originalUser.copyWith(email: "newemail@example.com");
 
-  ProfileModel copyWith({
+  ProfileModel updateProfileWith({
     int? id,
     String? firstName,
     String? lastName,

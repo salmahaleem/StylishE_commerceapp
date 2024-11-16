@@ -5,8 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sidebarx/sidebarx.dart';
 import 'package:stylishecommerce/core/utils/navigation.dart';
 import 'package:stylishecommerce/core/utils/routes/routes_pages.dart';
-import 'package:stylishecommerce/feature/home/logic/home_cubit.dart';
-import 'package:stylishecommerce/feature/home/product/logic/products_cubit.dart';
+import 'package:stylishecommerce/feature/home/logic/home/home_cubit.dart';
 import 'package:stylishecommerce/feature/home/ui/widget/category_list/category.dart';
 import 'package:stylishecommerce/feature/home/ui/widget/limitProductsHomeList.dart';
 import 'package:stylishecommerce/feature/home/ui/widget/searchBar.dart';
@@ -16,6 +15,7 @@ import 'package:stylishecommerce/feature/home/ui/widget/swipercard.dart';
 import '../../../core/network_service/gititdio.dart';
 import '../../../core/utils/spacing.dart';
 import '../../../generated/assets.dart';
+import '../logic/categoryProducts/category_products_cubit.dart';
 import 'widget/category_list/fillterbar.dart';
 
 class HomePage extends StatelessWidget{
@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget{
           value: getIt<HomeCubit>(),
         ),
         BlocProvider.value(
-          value: getIt<ProductsCubit>(),
+          value: getIt<CategoryProductsCubit>(),
         ),
       ],
   child: Scaffold(

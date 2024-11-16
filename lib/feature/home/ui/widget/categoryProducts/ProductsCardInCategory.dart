@@ -1,32 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stylishecommerce/core/utils/spacing.dart';
-import 'package:stylishecommerce/feature/home/product/model/productsModel.dart';
 
-class ProductsCardInCategory extends StatelessWidget{
+import '../../../../product/model/productsModel.dart';
+
+class ProductsCardInCategory extends StatelessWidget {
   final ProductsModel productsModel;
 
-  const ProductsCardInCategory({super.key,required this.productsModel});
+  const ProductsCardInCategory({super.key, required this.productsModel});
   @override
   Widget build(BuildContext context) {
     return Card(
       child: Column(
         children: [
-      ClipRRect(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(12.r)),
-    child: Image.network(
-    productsModel.images[0],
-    height: 130.h,
-    width: 156.w,
-    fit: BoxFit.cover,
-    loadingBuilder: (context, child, loadingProgress) {
-    if (loadingProgress == null) return child;
-    return Center(child: CircularProgressIndicator());
-    },
-    errorBuilder: (context, error, stackTrace) =>
-    const Icon(Icons.error, size: 40),
-    ),
-    ),
+          ClipRRect(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(12.r)),
+            child: Image.network(
+              productsModel.images[0],
+              height: 130.h,
+              width: 156.w,
+              fit: BoxFit.cover,
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return Center(child: CircularProgressIndicator());
+              },
+              errorBuilder: (context, error, stackTrace) =>
+                  const Icon(Icons.error, size: 40),
+            ),
+          ),
           verticalSpace(3.h),
           Text(productsModel.title),
         ],
@@ -157,5 +158,4 @@ class ProductsCardInCategory extends StatelessWidget{
   //     ],
   //   );
   // }
-
 }

@@ -5,7 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stylishecommerce/core/utils/navigation.dart';
 import 'package:stylishecommerce/core/utils/routes/routes_pages.dart';
-import 'package:stylishecommerce/feature/home/product/logic/products_cubit.dart';
+
+import '../../../logic/categoryProducts/category_products_cubit.dart';
 
 class CategoryCard extends StatelessWidget{
     final String category;
@@ -19,8 +20,8 @@ class CategoryCard extends StatelessWidget{
     Widget build(BuildContext context) {
       return GestureDetector(
         onTap: (){
-          final productCubit = context.read<ProductsCubit>();
-          productCubit.getProductsByCategory(category);
+          final productCubit = context.read<CategoryProductsCubit>();
+          productCubit.getProductWithCategoryName(category);
           context.pushNamed(RoutesPages.productsByCategory,arguments: category);
         },
         child: Container(
@@ -53,7 +54,7 @@ class CategoryCard extends StatelessWidget{
                   ),
                   SizedBox(height: 4.h),
                   Text(
-                    "See more places",
+                    "See more Products",
                     style: Theme.of(context).textTheme.labelSmall?.copyWith(
                       fontSize: 12.sp,
                       color: Colors.grey,

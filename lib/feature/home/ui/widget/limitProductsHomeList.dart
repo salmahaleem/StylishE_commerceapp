@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:stylishecommerce/feature/home/logic/home_cubit.dart';
-import 'package:stylishecommerce/feature/home/product/ui/ProductsCardInCategory.dart';
+import 'package:stylishecommerce/feature/home/logic/home/home_cubit.dart';
+
+import 'categoryProducts/ProductsCardInCategory.dart';
 
 class LimitProductsHomeList extends StatelessWidget{
   const LimitProductsHomeList({super.key});

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:stylishecommerce/core/network_service/homeService.dart';
-import 'package:stylishecommerce/feature/home/product/model/productsModel.dart';
+import 'package:stylishecommerce/feature/product/model/productsModel.dart';
 
 part 'home_state.dart';
 

@@ -4,7 +4,8 @@ import 'package:dio/dio.dart';
 
 import 'package:stylishecommerce/core/network_service/ApiConstant.dart';
 import 'package:stylishecommerce/core/network_service/ErrorService.dart';
-import 'package:stylishecommerce/feature/home/product/model/productsModel.dart';
+
+import '../../feature/product/model/productsModel.dart';
 
 class HomeService{
   final Dio dio;
