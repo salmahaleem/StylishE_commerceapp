@@ -8,6 +8,7 @@ class LoginResponseModel{
   final String image;
   final String accessToken;
   final String refreshToken;
+
    LoginResponseModel({
      required this.id,
      required this.username,

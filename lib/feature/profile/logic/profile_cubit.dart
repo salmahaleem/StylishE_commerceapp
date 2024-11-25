@@ -12,8 +12,6 @@ class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit(this.profileService) : super(ProfileInitial());
 
   ProfileModel? profile;
-
-
   Address? selectedAddress;
 
   TextEditingController usernameController = TextEditingController();
@@ -29,11 +27,9 @@ class ProfileCubit extends Cubit<ProfileState> {
   TextEditingController ibanController = TextEditingController();
 
   //function to get user
-  Future getUser() async{
-
+  Future<void> getUser() async{
+    emit(ProfileLoading());
     try{
-      emit(ProfileLoading());
-
       profile = await profileService.getUser();
       if(profile != null){
         textFieldInput();
@@ -49,7 +45,12 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   //function to update the profile
-  Future updateUser({String? imageUrl}) async{
+  Future<void> updateUser({String? imageUrl}) async{
+    if (profile == null) {
+      emit(ProfileFailure("No user loaded to update."));
+      return;
+    }
+    emit(ProfileUpdating());
    try{
      final updatedUser = await profileService.updateUser(
        userId: profile!.id!,

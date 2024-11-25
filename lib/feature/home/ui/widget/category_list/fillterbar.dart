@@ -8,43 +8,43 @@ import 'package:stylishecommerce/core/network_service/gititdio.dart';
 import 'package:stylishecommerce/core/utils/navigation.dart';
 import 'package:stylishecommerce/core/utils/routes/routes_pages.dart';
 import 'package:stylishecommerce/core/utils/spacing.dart';
+import '../../../../../core/network_service/productService.dart';
 import '../../../../../generated/locale_keys.dart';
+import '../../../../product/logic/prodects_cubit.dart';
+import '../../../../product/model/productsModel.dart';
 import '../../../logic/categoryProducts/category_products_cubit.dart';
 
 class Fillterbar extends StatelessWidget{
-
-  Fillterbar({super.key});
+  ProductService? productService;
+  Fillterbar({super.key,this.productService,});
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<CategoryProductsCubit>(
-      create: (_) => getIt<CategoryProductsCubit>(),
-      child: Container(
-      width: 340.w,
-      child: Row(
-        children: [
-          Text(LocaleKeys.homepage_all_featured.tr(),style: TextStyle(fontWeight: FontWeight.bold),),
-            horizontalSpace(33.w),
-          ElevatedButton(
-            onPressed: (){
-              showFlexibleBottomSheet(
-                context: context,
-                builder:  _buildBottomSheet,
-              );
-            }, child: Row(children: [Text(LocaleKeys.homepage_sort.tr()),Icon(Icons.compare_arrows)],),),
-          horizontalSpace(2.w),
-          ElevatedButton(
-            onPressed: (){
-              showFlexibleBottomSheet(
-                context: context,
-                builder:  _buildBottomSheet,
-              );
-            }, child: Row(children: [Text(LocaleKeys.homepage_filter.tr()),Icon(Icons.filter_list_alt)],),),
+    return Container(
+    width: 340.w,
+    child: Row(
+      children: [
+        Text(LocaleKeys.homepage_all_featured.tr(),style: TextStyle(fontWeight: FontWeight.bold),),
+          horizontalSpace(33.w),
+        ElevatedButton(
+          onPressed: (){
+            showFlexibleBottomSheet(
+              context: context,
+              builder:  _buildBottomSheet,
+            );
+          }, child: Row(children: [Text(LocaleKeys.homepage_sort.tr()),Icon(Icons.compare_arrows)],),),
+        horizontalSpace(2.w),
+        ElevatedButton(
+          onPressed: (){
+            showFlexibleBottomSheet(
+              context: context,
+              builder:  _buildBottomSheet,
+            );
+          }, child: Row(children: [Text(LocaleKeys.homepage_filter.tr()),Icon(Icons.filter_list_alt)],),),
 
-        ]),
-          ),
-    );
+      ]),
+        );
   }
-
+  List<String> sort =['All','Home','Fashion','Electronic'];
   Widget _buildBottomSheet(
       BuildContext context,
       ScrollController scrollController,
@@ -56,14 +56,17 @@ class Fillterbar extends StatelessWidget{
           controller: scrollController,
           shrinkWrap: true,
           itemBuilder: (BuildContext context, int index) {
-            return ListTile(
-              title: Text("ALL"),
-              onTap: (){
-                final productCubit = context.read<CategoryProductsCubit>();
-                 //productCubit.();
-                 context.pushNamed(RoutesPages.productsByCategory);
+            return BlocProvider(
+             create: (context) => ProdectsCubit(productService!),
+                child: ListTile(
+                title: Text(sort[index]),
+               onTap: (){
+                final productCubit = context.read<ProdectsCubit>();
+                 productCubit.getAllProducts();
+                 context.pushNamed(RoutesPages.AllProducts);
               },
-            );
+            ),
+);
         },
         ),
       ),

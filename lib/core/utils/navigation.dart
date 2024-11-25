@@ -12,4 +12,6 @@ extension Navigation on BuildContext{
     return Navigator.of(this).pushNamed(routeName, arguments: arguments);
   }
 
+  void pop() => Navigator.of(this).pop();
+
 }

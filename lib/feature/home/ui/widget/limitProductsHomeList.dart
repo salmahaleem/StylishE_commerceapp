@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stylishecommerce/feature/home/logic/home/home_cubit.dart';
 
 import 'categoryProducts/ProductsCardInCategory.dart';
+import 'categoryProducts/productShimmer.dart';
 
 class LimitProductsHomeList extends StatelessWidget{
   const LimitProductsHomeList({super.key});
@@ -14,26 +15,26 @@ class LimitProductsHomeList extends StatelessWidget{
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         if (state is HomeLoading) {
-           return CircularProgressIndicator();
-          // GridView.builder(
-          //   padding: EdgeInsets.symmetric(horizontal: 16.w),
-          //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          //     crossAxisCount: 2,
-          //     crossAxisSpacing: 6,
-          //     mainAxisSpacing: 6,
-          //     childAspectRatio: 2.5 / 4,
-          //   ),
-          //   shrinkWrap: true,
-          //   physics: const NeverScrollableScrollPhysics(),
-          //   itemCount: 4,
-          //   itemBuilder: (context, index) => const ProductShimmerLoading(),
-          // );
+           return
+          GridView.builder(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 6,
+              mainAxisSpacing: 6,
+              childAspectRatio: 2.5 / 4,
+            ),
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: 4,
+            itemBuilder: (context, index) => const ProductShimmerLoading(),
+          );
         } else if (state is HomeFailure) {
           return Center(
             child: Text(state.errorMesg, style: TextStyle(color: Colors.red)),
           );
         } else if (state is HomeLoaded) {
-          final productsToShow = state.products.take(4).toList();
+          final productsToShow = state.products.toList();
 
           return GridView.builder(
             padding: EdgeInsets.symmetric(horizontal: 16.w),

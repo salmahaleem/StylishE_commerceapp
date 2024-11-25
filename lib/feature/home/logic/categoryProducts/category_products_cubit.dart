@@ -13,7 +13,7 @@ class CategoryProductsCubit extends Cubit<CategoryProductsState> {
 
   Map<String, List<ProductsModel>> categoryProductCache = {};
 
-  Future<void> getProductWithCategoryName(String categoryName) async {
+  Future getProductWithCategoryName(String categoryName) async {
     if (categoryProductCache.containsKey(categoryName)) {
       emit(CategoryProductsLoaded(categoryProductCache[categoryName]!));
       return;
@@ -30,5 +30,7 @@ class CategoryProductsCubit extends Cubit<CategoryProductsState> {
           "Failed to load category products: ${e.toString()}"));
     }
   }
+
+
 
 }

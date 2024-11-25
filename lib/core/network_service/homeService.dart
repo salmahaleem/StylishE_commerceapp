@@ -70,7 +70,7 @@ class HomeService{
       final response = await dio.get('${ApiConstant.productsByCategory}/${categoryName}');
       if(response.statusCode == 200){
         return (
-            response.data['products'])
+            response.data['products']as List)
             .map((json)=>ProductsModel.fromJson(json))
             .toList();
       }else{
@@ -81,6 +81,29 @@ class HomeService{
     }
     catch(error){
       throw Exception("error while loading products by category $error");
+    }
+  }
+
+  Future<List<ProductsModel>> searchProducts(String query) async {
+    try {
+      final response = await dio.get(
+        ApiConstant.search,
+        queryParameters: {
+          'search': query
+        },
+      );
+
+      if (response.statusCode == 200) {
+        return (response.data['products'] as List)
+            .map((json) => ProductsModel.fromJson(json))
+            .toList();
+      } else {
+        throw Exception("Failed to load search results: Status code ${response.statusCode}");
+      }
+    } on DioException catch (e) {
+      throw dioErrorHandler(e);
+    } catch (e) {
+      throw Exception("Unexpected error while searching products: $e");
     }
   }
  }

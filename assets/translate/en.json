@@ -3,6 +3,9 @@
     "title_Register": "Create an account",
     "title_Login": "Welcome Back!",
     "user_name": "Name",
+    "first_name":"First Name" ,
+    "last_name": "Last Name",
+    "age": "Age",
     "account_email": "Email",
     "password": "Password",
     "confirm_password": "Confirm Password",
@@ -14,7 +17,6 @@
     "Login_bottom": "Login",
     "or_continue_with": "OR Continue with",
     "already_have_account": "Already have an Account",
-
     "enterEmail": "Please enter your email",
     "invalidEmail": "Please enter a valid email",
     "enterPassword": "Please enter your password",

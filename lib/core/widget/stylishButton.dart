@@ -2,15 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stylishecommerce/core/utils/colors.dart';
+import 'package:stylishecommerce/core/utils/spacing.dart';
 
 class StylishButton extends StatelessWidget{
   final String text;
   final VoidCallback onPressed;
+  final IconData? icon;
 
   const StylishButton({
     Key? key,
     required this.text,
     required this.onPressed,
+    this.icon
   }) : super(key: key);
 
   @override
@@ -28,7 +31,14 @@ class StylishButton extends StatelessWidget{
           child: ElevatedButton(
             style: buttonStyle,
             onPressed: onPressed,
-            child: Text(text,style: Theme.of(context).textTheme.labelLarge!.copyWith(fontSize: 20.sp),),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(text,style: Theme.of(context).textTheme.labelLarge!.copyWith(fontSize: 20.sp),),
+                horizontalSpace(15.w),
+                Icon(icon),
+              ],
+            ),
           ),
         );
   }

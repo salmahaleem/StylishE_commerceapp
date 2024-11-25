@@ -3,6 +3,9 @@ abstract class LocaleKeys{
   static const Authentication_title_Register = 'Authentication.title_Register';
   static const Authentication_title_Login = 'Authentication.title_Login';
   static const Authentication_user_name = 'Authentication.user_name';
+  static const Authentication_last_name = 'Authentication.last_name';
+  static const Authentication_first_name = 'Authentication.first_name';
+  static const Authentication_age= 'Authentication.age';
   static const Authentication_account_email = 'Authentication.account_email';
   static const Authentication_password = 'Authentication.password';
   static const Authentication_confirm_password = 'Authentication.confirm_password';

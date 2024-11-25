@@ -10,6 +10,8 @@ import 'package:stylishecommerce/core/utils/routes/routes_pages.dart';
 import 'app_logic/languages/language_cubit.dart';
 import 'app_logic/theme/theme_cubit.dart';
 import 'core/network_service/gititdio.dart';
+import 'core/network_service/productService.dart';
+import 'feature/product/logic/prodects_cubit.dart';
 import 'generated/codegenrated.dart';
 
 void main() async {
@@ -27,6 +29,7 @@ void main() async {
               providers: [
                 BlocProvider(create: (_) => ThemeCubit()),
                 BlocProvider(create: (_) => LanguageCubit()),
+                BlocProvider(create: (_) => ProdectsCubit(getIt<ProductService>())..getAllProducts()),
               ],
               child: const MyApp())));
 }
@@ -63,7 +66,8 @@ class MyApp extends StatelessWidget {
                         : const Locale('en');
                   },
                   onGenerateRoute: AppRouter.route,
-                  initialRoute: RoutesPages.home,
+                  initialRoute: RoutesPages.splash
+                  ,
                 );
               },
             );
